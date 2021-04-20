@@ -4,9 +4,9 @@
 }
 
 img {
-    height: 250px;
-    width: 175px;
-    Border: none;
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
 }
 
 
