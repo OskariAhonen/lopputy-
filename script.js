@@ -30,7 +30,7 @@ nappi.addEventListener("click", () => {
         document.getElementById("kuva" + i).src="kuvat/ruutu/ruutu_" + randomNumero + ".png"
     }
 
-    // Kortti laitetaan kortit taulukkoon //
+    // Luodaan kortti olio ja se laitetaan taulukkoon //
     
     function kortti(maa, arvo) {
         this.maa = maa;
