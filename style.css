@@ -1,0 +1,25 @@
+#demo {
+    font-size: larger;
+    font-weight: bold;
+}
+
+img {
+    height: 250px;
+    width: 175px;
+    Border: none;
+}
+
+
+button {
+    background-color: rgba(19, 16, 6, 0.438);
+    height: 50px;
+    width: 175px;
+
+    font-size: larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor:initial;
+    margin:auto;
+  display:block;
+
+}
+
