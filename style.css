@@ -4,9 +4,9 @@
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    width: auto\9;
+    height: 250px;
+    width: 175px;
+    Border: solid 4px white;
 }
 
 
@@ -19,7 +19,7 @@ button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     cursor:initial;
     margin:auto;
-  display:block;
+  
 
 }
 
