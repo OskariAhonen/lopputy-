@@ -16,7 +16,6 @@ nappi.addEventListener("click", () => {
     if(poistoPakka.length > 25) {
         poistoPakka.length = 0
         }
-        console.log(poistoPakka.length)
 
         
     
@@ -26,11 +25,11 @@ nappi.addEventListener("click", () => {
     }
 
     // arpoo ja laittaa kortit esille //
-    for (i = 1; i < 6; i++) {
-        kortitEsille()
+    for (l = 1; l < 6; l++) {
+        kortitEsille(l)
     }
 })
-    function kortitEsille() {
+    function kortitEsille(paikka) {
 
     // arvotaan maa //
     var randomluku = Math.floor(Math.random() * 4)
@@ -48,21 +47,21 @@ nappi.addEventListener("click", () => {
 
                 kortit.pop(b - 1)
                 poistoPakka.pop(b - 1)
-                kortitEsille()
+                kortitEsille(paikka)
             }
             
         }
 
 
     // laitetaan kortit esille //
-    if (kortit[i - 1].maa == "hertta") {
-        document.getElementById("kuva" + i).src="kuvat/hertta/hertta_" + kortit[i - 1].arvo + ".png"
-    } else if (kortit[i - 1].maa == "risti") {
-        document.getElementById("kuva" + i).src="kuvat/risti/risti_" + kortit[i - 1].arvo + ".png"
-    } else if (kortit[i - 1].maa == "pata") {
-        document.getElementById("kuva" + i).src="kuvat/pata/pata_" + kortit[i - 1].arvo + ".png"
-    } else if (kortit[i - 1].maa == "ruutu"){
-        document.getElementById("kuva" + i).src="kuvat/ruutu/ruutu_" + kortit[i - 1].arvo + ".png"
+    if (kortit[paikka - 1].maa == "hertta") {
+        document.getElementById("kuva" + paikka).src="kuvat/hertta/hertta_" + kortit[ - 1].arvo + ".png"
+    } else if (kortit[paikka - 1].maa == "risti") {
+        document.getElementById("kuva" + paikka).src="kuvat/risti/risti_" + kortit[paikka - 1].arvo + ".png"
+    } else if (kortit[paikka - 1].maa == "pata") {
+        document.getElementById("kuva" + paikka).src="kuvat/pata/pata_" + kortit[paikka - 1].arvo + ".png"
+    } else if (kortit[paikka - 1].maa == "ruutu"){
+        document.getElementById("kuva" + paikka).src="kuvat/ruutu/ruutu_" + kortit[paikka - 1].arvo + ".png"
     }
 }
 
