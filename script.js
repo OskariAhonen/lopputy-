@@ -8,6 +8,7 @@ const kuva3 = document.getElementById("kuva3")
 const kuva4 = document.getElementById("kuva4")
 const kuva5 = document.getElementById("kuva5")
 
+var lukitus1 = false
 var kortit = []
 var poistoPakka = []
 
@@ -29,6 +30,22 @@ nappi.addEventListener("click", () => {
         kortitEsille(l)
     }
 })
+kuva1.addEventListener("click", () => {
+    var x1 = document.getElementById("kuva1").style.borderColor
+    
+      if(x1 == "white") {
+           document.getElementById("kuva1").style.borderColor = "yellow"
+           lukitus1 = true
+           console.log(lukitus1)
+
+       }
+      else if (x1 = "yellow"){
+        document.getElementById("kuva1").style.borderColor = "white" 
+        lukitus1 = false
+        console.log(lukitus1)  
+    }
+   })
+  
     function kortitEsille(paikka) {
 
     // arvotaan maa //
@@ -55,7 +72,7 @@ nappi.addEventListener("click", () => {
 
     // laitetaan kortit esille //
     if (kortit[paikka - 1].maa == "hertta") {
-        document.getElementById("kuva" + paikka).src="kuvat/hertta/hertta_" + kortit[ - 1].arvo + ".png"
+        document.getElementById("kuva" + paikka).src="kuvat/hertta/hertta_" + kortit[paikka - 1].arvo + ".png"
     } else if (kortit[paikka - 1].maa == "risti") {
         document.getElementById("kuva" + paikka).src="kuvat/risti/risti_" + kortit[paikka - 1].arvo + ".png"
     } else if (kortit[paikka - 1].maa == "pata") {
@@ -65,14 +82,7 @@ nappi.addEventListener("click", () => {
     }
 }
 
-    kuva1.addEventListener("click", () => {
-        if( document.getElementById("kuva1").style.borderColor = "white")
-            document.getElementById("kuva1").style.borderColor = "yellow"
-        else if (document.getElementById("kuva1").style.borderColor = "yellow") {
-            document.getElementById("kuva1").style.borderColor = "white"   
-        }
-    })
-   
+
     // Luodaan kortti olio ja se laitetaan taulukkoon //
     
     function kortti(maa, arvo) {
