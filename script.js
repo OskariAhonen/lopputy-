@@ -26,12 +26,11 @@ var poistoPakka = []
 
 nappi.addEventListener("click", () => {
     vaihtoM = true 
-    if(poistoPakka.length > 25) {
-        poistoPakka.length = 0
-        }
-
-        
+    console.log(poistoPakka.length)
     
+    if (poistoPakka.length > 4) {
+        poistoPakka.length = 0
+    }
     // poistaa kortit taulukon osat //
     for (k = 0; i = kortit.length; k++) {
         kortit.pop(k)
@@ -46,11 +45,11 @@ nappi.addEventListener("click", () => {
 kuva1.addEventListener("click", () => {
     x1 = document.getElementById("kuva1").style.borderColor
     
-      if(x1 == "white") {
+      if(x1 == "white" && vaihtoM != false) {
            document.getElementById("kuva1").style.borderColor = "yellow"
            lukitus1 = true
            console.log(lukitus1)
-    } else if (x1 = "yellow"){
+    } else if (x1 = "yellow" && vaihtoM != false){
         document.getElementById("kuva1").style.borderColor = "white" 
         lukitus1 = false
     }
@@ -58,11 +57,11 @@ kuva1.addEventListener("click", () => {
    kuva2.addEventListener("click", () => {
    x2 = document.getElementById("kuva2").style.borderColor
     
-      if(x2 == "white") {
+      if(x2 == "white" && vaihtoM != false) {
            document.getElementById("kuva2").style.borderColor = "yellow"
            lukitus2 = true
        }
-      else if (x2 = "yellow"){
+      else if (x2 = "yellow" && vaihtoM != false){
         document.getElementById("kuva2").style.borderColor = "white" 
         lukitus2 = false  
     }
@@ -70,11 +69,11 @@ kuva1.addEventListener("click", () => {
    kuva3.addEventListener("click", () => {
      x3 = document.getElementById("kuva3").style.borderColor
     
-      if(x3 == "white") {
+      if(x3 == "white" && vaihtoM != false) {
            document.getElementById("kuva3").style.borderColor = "yellow"
            lukitus3 = true
        }
-      else if (x3 = "yellow"){
+      else if (x3 = "yellow" && vaihtoM != false){
         document.getElementById("kuva3").style.borderColor = "white" 
         lukitus3 = false  
     }
@@ -82,11 +81,11 @@ kuva1.addEventListener("click", () => {
    kuva4.addEventListener("click", () => {
      x4 = document.getElementById("kuva4").style.borderColor
     
-      if(x4 == "white") {
+      if(x4 == "white" && vaihtoM != false) {
            document.getElementById("kuva4").style.borderColor = "yellow"
            lukitus4 = true
        }
-      else if (x4 = "yellow"){
+      else if (x4 = "yellow" && vaihtoM != false){
         document.getElementById("kuva4").style.borderColor = "white" 
         lukitus4 = false  
     }
@@ -94,40 +93,53 @@ kuva1.addEventListener("click", () => {
    kuva5.addEventListener("click", () => {
      x5 = document.getElementById("kuva5").style.borderColor
     
-      if(x5 == "white") {
+      if(x5 == "white" && vaihtoM != false) {
            document.getElementById("kuva5").style.borderColor = "yellow"
            lukitus5 = true
        }
-      else if (x5 = "yellow"){
+      else if (x5 = "yellow" && vaihtoM != false){
         document.getElementById("kuva5").style.borderColor = "white" 
         lukitus5 = false  
     }
    })
    
    lukitusNappi.addEventListener("click", () => {
-       vaihtoM = false
-    if (lukitus1 == true) {
+    
+   
+
+    if (lukitus1 == true && vaihtoM != false) {
         kortit.pop[0]
         kortitEsille(1)
-        
+        document.getElementById("kuva1").style.borderColor = "white" 
+        lukitus1 = false
     }
-    if (lukitus2 == true) {
+    if (lukitus2 == true && vaihtoM != false) {
         kortit.pop[1]
         kortitEsille(2)
+        document.getElementById("kuva2").style.borderColor = "white" 
+        lukitus2 = false
     }
-    if (lukitus3 == true) {
+    if (lukitus3 == true && vaihtoM != false) {
         kortit.pop[2]
         kortitEsille(3)
+        document.getElementById("kuva3").style.borderColor = "white"
+        lukitus3 = false 
+
     }
-    if (lukitus4 == true) {
+    if (lukitus4 == true && vaihtoM != false) {
         kortit.pop[3]
         kortitEsille(4)
-    }
-    if (lukitus5 == true) {
-        kortit.pop[4]
-        kortitEsille[5]
-    }
+        document.getElementById("kuva4").style.borderColor = "white" 
+        lukitus4 = false
 
+    }
+    if (lukitus5 == true && vaihtoM != false) {
+        kortit.pop[4]
+        kortitEsille(5)
+        document.getElementById("kuva5").style.borderColor = "white" 
+        lukitus5 = false
+    }
+vaihtoM = false
 
    })
    
@@ -141,29 +153,36 @@ kuva1.addEventListener("click", () => {
     // arvotaan kortin numero //
     var randomluku2 = Math.floor(Math.random() * 13)
     randomNumero = numerot[randomluku2]
-    var uusiKortti = new kortti(randomMaa, randomNumero)   
-    kortit.push(uusiKortti)
-    poistoPakka.push(uusiKortti)
-
-        for (b = 0; b = poistoPakka.length - 1; b++){
-            if (poistoPakka[b].arvo == randomNumero && poistoPakka[b].maa == randomMaa) {
-
-                kortit.pop(b - 1)
+    var uusiKortti = new kortti(randomMaa, randomNumero)
+    poistoPakka.push(uusiKortti) 
+        kortit.push(uusiKortti)  
+        for (b = 0; b < poistoPakka.length - 1; b++){
+            if (poistoPakka[b].arvo == uusiKortti.arvo && poistoPakka[b].maa == uusiKortti.maa) {
                 poistoPakka.pop(poistoPakka.length - 1)
+                kortit.pop[kortit.length - 1]
                 kortitEsille(paikka)
+               
             }
             
         }
-
-
+        for (b = 0; b < kortit.length - 1; b++){
+            if (kortit[b].arvo == uusiKortti.arvo && kortit[b].maa == uusiKortti.maa) {
+                kortit.pop[kortit.length - 1]
+                poistoPakka.pop(poistoPakka.length - 1)
+                kortitEsille(paikka)
+               
+            }
+            
+        } 
+    
     // laitetaan kortit esille //
-    if (uusiKortti.maa == "hertta") {
+    if (kortit[kortit.length - 1].maa == "hertta") {
         document.getElementById("kuva" + paikka).src="kuvat/hertta/hertta_" + uusiKortti.arvo + ".png"
-    } else if (uusiKortti.maa == "risti") {
+    } else if (kortit[kortit.length - 1].maa == "risti") {
         document.getElementById("kuva" + paikka).src="kuvat/risti/risti_" + uusiKortti.arvo + ".png"
-    } else if (uusiKortti.maa == "pata") {
+    } else if (kortit[kortit.length - 1].maa == "pata") {
         document.getElementById("kuva" + paikka).src="kuvat/pata/pata_" + uusiKortti.arvo + ".png"
-    } else if (uusiKortti.maa == "ruutu"){
+    } else if (kortit[kortit.length - 1].maa == "ruutu"){
         document.getElementById("kuva" + paikka).src="kuvat/ruutu/ruutu_" + uusiKortti.arvo + ".png"
     }
 }
