@@ -2,6 +2,7 @@ const maat = ["hertta", "risti", "ruutu", "pata"]
 const numerot = [1,2,3,4,5,6,7,8,9,10,11,12,13]
 const nappi = document.getElementById("nappi")
 const lukitusNappi = document.getElementById("lukitusNappi")
+const tarkistusNappi = document.getElementById("tarkistusNappi")
 const kuva1 = document.getElementById("kuva1")
 const kuva2 = document.getElementById("kuva2")
 const kuva3 = document.getElementById("kuva3")
@@ -14,6 +15,8 @@ var lukitus3 = false
 var lukitus4 = false
 var lukitus5 = false
 
+
+
 var vaihtoM = false
 var x1
 var x2
@@ -21,9 +24,13 @@ var x3
 var x4
 var x5
 
+var pari = false
+var kolmeSamaa = false
+var neljäSamaa = false
+
 var kortit = []
 var poistoPakka = []
-
+var tarkistusArvot = []
 nappi.addEventListener("click", () => {
     vaihtoM = true 
     console.log(poistoPakka.length)
@@ -32,9 +39,8 @@ nappi.addEventListener("click", () => {
         poistoPakka.length = 0
     }
     // poistaa kortit taulukon osat //
-    for (k = 0; i = kortit.length; k++) {
-        kortit.pop(k)
-    }
+    kortit.length = 0
+    tarkistusArvot.length = 0
 
     // arpoo ja laittaa kortit esille //
     for (l = 1; l < 6; l++) {
@@ -143,6 +149,54 @@ vaihtoM = false
 
    })
    
+   tarkistusNappi.addEventListener("click", () => {
+        for(t = 0; t < kortit.length; t++) {
+            tarkistusArvot.push(kortit[t].arvo)
+        }
+        tarkistusArvot.sort(function(a, b){return a-b});
+
+        // onko pari, tripla yms...
+        for(d = 0; d < tarkistusArvot.length - 1; d++) {
+            if (tarkistusArvot[d].arvo === tarkistusArvot[d + 1].arvo) {
+                pari = true
+            }
+           
+        }
+        
+        for(d2 = 0; d2 < tarkistusArvot.length - 2; d2++) {
+            if (tarkistusArvot[d2].arvo === tarkistusArvot[d2 + 1].arvo && tarkistusArvot[d2].arvo === tarkistusArvot[d2 + 2].arvo) {
+                kolmeSamaa = true
+                pari = false
+            }
+           
+        }
+        for(d3 = 0; d3 < tarkistusArvot.length - 3; d3++) {
+            if (tarkistusArvot[d3].arvo === tarkistusArvot[d3 + 1].arvo && tarkistusArvot[d3].arvo === tarkistusArvot[d3 + 2].arvo && tarkistusArvot[d3].arvo === tarkistusArvot[d3 + 3].arvo) {
+                alert(tarkistusArvot[d3].arvo + tarkistusArvot[d3 + 1].arvo + tarkistusArvot[d3 + 2].arvo + tarkistusArvot[d3 + 3].arvo)
+                kolmeSamaa = false
+                pari = false
+        }
+        } 
+       
+       
+        if (pari = false && (kolmeSamaa = false) && (neljäSamaa = false)) {
+            alert("Ei mitään")
+        }
+        if (pari == true) {
+            alert("Jippii2") 
+            pari = false 
+        } else if (kolmeSamaa == true) {
+            alert("kolme samaa on" + kolmeSamaa)
+            kolmeSamaa = false 
+        } else if (neljäSamaa == true) {
+            alert("neljä samaa on" + neljäSamaa) 
+            neljäSamaa = false
+        }
+
+
+
+
+   })
 
     function kortitEsille(paikka) {
 
