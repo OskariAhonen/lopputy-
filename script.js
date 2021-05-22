@@ -28,6 +28,10 @@ var pari = false
 var kolmeSamaa = false
 var neljäSamaa = false
 
+
+var suora = false
+var suoraMaara = 0
+
 var kortit = []
 var poistoPakka = []
 var tarkistusArvot = []
@@ -114,33 +118,33 @@ kuva1.addEventListener("click", () => {
    
 
     if (lukitus1 == true && vaihtoM != false) {
-        kortit.pop[0]
+        kortit.pop(0)
         kortitEsille(1)
         document.getElementById("kuva1").style.borderColor = "white" 
         lukitus1 = false
     }
     if (lukitus2 == true && vaihtoM != false) {
-        kortit.pop[1]
+        kortit.pop(1)
         kortitEsille(2)
         document.getElementById("kuva2").style.borderColor = "white" 
         lukitus2 = false
     }
     if (lukitus3 == true && vaihtoM != false) {
-        kortit.pop[2]
+        kortit.pop(2)
         kortitEsille(3)
         document.getElementById("kuva3").style.borderColor = "white"
         lukitus3 = false 
 
     }
     if (lukitus4 == true && vaihtoM != false) {
-        kortit.pop[3]
+        kortit.pop(3)
         kortitEsille(4)
         document.getElementById("kuva4").style.borderColor = "white" 
         lukitus4 = false
 
     }
     if (lukitus5 == true && vaihtoM != false) {
-        kortit.pop[4]
+        kortit.pop(4)
         kortitEsille(5)
         document.getElementById("kuva5").style.borderColor = "white" 
         lukitus5 = false
@@ -150,48 +154,30 @@ vaihtoM = false
    })
    
    tarkistusNappi.addEventListener("click", () => {
+       if(kortit.length != 0) {
         for(t = 0; t < kortit.length; t++) {
             tarkistusArvot.push(kortit[t].arvo)
         }
         tarkistusArvot.sort(function(a, b){return a-b});
+    }
+        //suora
 
-        // onko pari, tripla yms...
-        for(d = 0; d < tarkistusArvot.length - 1; d++) {
-            if (tarkistusArvot[d].arvo === tarkistusArvot[d + 1].arvo) {
-                pari = true
-            }
-           
-        }
-        
-        for(d2 = 0; d2 < tarkistusArvot.length - 2; d2++) {
-            if (tarkistusArvot[d2].arvo === tarkistusArvot[d2 + 1].arvo && tarkistusArvot[d2].arvo === tarkistusArvot[d2 + 2].arvo) {
-                kolmeSamaa = true
-                pari = false
-            }
-           
-        }
-        for(d3 = 0; d3 < tarkistusArvot.length - 3; d3++) {
-            if (tarkistusArvot[d3].arvo === tarkistusArvot[d3 + 1].arvo && tarkistusArvot[d3].arvo === tarkistusArvot[d3 + 2].arvo && tarkistusArvot[d3].arvo === tarkistusArvot[d3 + 3].arvo) {
-                alert(tarkistusArvot[d3].arvo + tarkistusArvot[d3 + 1].arvo + tarkistusArvot[d3 + 2].arvo + tarkistusArvot[d3 + 3].arvo)
-                kolmeSamaa = false
-                pari = false
-        }
-        } 
-       
-       
-        if (pari = false && (kolmeSamaa = false) && (neljäSamaa = false)) {
-            alert("Ei mitään")
-        }
-        if (pari == true) {
-            alert("Jippii2") 
-            pari = false 
-        } else if (kolmeSamaa == true) {
-            alert("kolme samaa on" + kolmeSamaa)
-            kolmeSamaa = false 
-        } else if (neljäSamaa == true) {
-            alert("neljä samaa on" + neljäSamaa) 
-            neljäSamaa = false
-        }
+        suora = false;
+        suoraMaara = 0
+ for (var i = 0; i < 5 - 1; i++) {
+   if (kortit[i].arvo - kortit[i + 1].arvo != -1) {
+       suoraMaara = suoraMaara + 1
+       if (suoraMaara == 5) {
+        suora = true;
+        alert("Suora on" + suora)
+       }
+    
+     break;
+   }
+}
+alert("Suora on" + suora)
+suoraMaara = 0
+
 
 
 
@@ -213,17 +199,17 @@ vaihtoM = false
         for (b = 0; b < poistoPakka.length - 1; b++){
             if (poistoPakka[b].arvo == uusiKortti.arvo && poistoPakka[b].maa == uusiKortti.maa) {
                 poistoPakka.pop(poistoPakka.length - 1)
-                kortit.pop[kortit.length - 1]
-                kortitEsille(paikka)
+                kortit.pop(poistoPakka.length - 1)
+               uusikortti = kortitEsille(paikka)
                
             }
             
         }
         for (b = 0; b < kortit.length - 1; b++){
             if (kortit[b].arvo == uusiKortti.arvo && kortit[b].maa == uusiKortti.maa) {
-                kortit.pop[kortit.length - 1]
+                kortit.pop(kortit.length - 1)
                 poistoPakka.pop(poistoPakka.length - 1)
-                kortitEsille(paikka)
+              uusikortti =  kortitEsille(paikka)
                
             }
             
@@ -231,13 +217,13 @@ vaihtoM = false
     
     // laitetaan kortit esille //
     if (kortit[kortit.length - 1].maa == "hertta") {
-        document.getElementById("kuva" + paikka).src="kuvat/hertta/hertta_" + uusiKortti.arvo + ".png"
+        document.getElementById("kuva" + paikka).src="kuvat/hertta/hertta_" + kortit[kortit.length - 1].arvo + ".png"
     } else if (kortit[kortit.length - 1].maa == "risti") {
-        document.getElementById("kuva" + paikka).src="kuvat/risti/risti_" + uusiKortti.arvo + ".png"
+        document.getElementById("kuva" + paikka).src="kuvat/risti/risti_" + kortit[kortit.length - 1].arvo + ".png"
     } else if (kortit[kortit.length - 1].maa == "pata") {
-        document.getElementById("kuva" + paikka).src="kuvat/pata/pata_" + uusiKortti.arvo + ".png"
+        document.getElementById("kuva" + paikka).src="kuvat/pata/pata_" + kortit[kortit.length - 1].arvo + ".png"
     } else if (kortit[kortit.length - 1].maa == "ruutu"){
-        document.getElementById("kuva" + paikka).src="kuvat/ruutu/ruutu_" + uusiKortti.arvo + ".png"
+        document.getElementById("kuva" + paikka).src="kuvat/ruutu/ruutu_" + kortit[kortit.length - 1].arvo + ".png"
     }
 }
 
