@@ -1,5 +1,5 @@
-const maat = ["hertta", "risti", "ruutu", "pata"]
-const numerot = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+const maat = ["hertta"]
+const numerot = [1,2,3,4,5, 6, 7, 8, 9, 10, 11, 12, 13]
 const nappi = document.getElementById("nappi")
 const lukitusNappi = document.getElementById("lukitusNappi")
 const tarkistusNappi = document.getElementById("tarkistusNappi")
@@ -31,13 +31,18 @@ var neljäSamaa = false
 
 var suora = false
 var suoraMaara = 0
-
+ var vari = false
+ var varimaara = 0
+ var varisuora = false
 var kortit = []
 var poistoPakka = []
 var tarkistusArvot = []
 nappi.addEventListener("click", () => {
     tarkistusTehty = false
     vaihtoM = true 
+    suora = false
+    vari = false
+    varisuora = false
     console.log(poistoPakka.length)
     
     if (poistoPakka.length > 4) {
@@ -166,28 +171,49 @@ vaihtoM = false
 
         suora = false;
         suoraMaara = 0
- for (var i = 0; i < 5 - 1; i++) {
-   if (kortit[i].arvo - kortit[i + 1].arvo != -1) {
+ for (var i = 0; i < 5; i++) {
+   if (tarkistusArvot[0] + i == tarkistusArvot[i]) {
        suoraMaara = suoraMaara + 1
-       if (suoraMaara == 5) {
+       if (suoraMaara == 6) {
         suora = true;
-       }
+       } 
     
-     break;
+     
    }
 }
 suoraMaara = 0
+// väri
+vari = false
+varimaara = 0
+for (b = 0; b < kortit.length; b++) {
+    if(kortit[b].maa == kortit[0].maa) {
+        varimaara = varimaara + 1
+        console.log(varimaara)
+        if(varimaara === 5) {
+            vari = true
+            console.log("Väri on olemasssa")
+            varimaara = 0
+        }
+        
+    }
 
+    //värisuora
 
+    if(suora = true && vari == true) {
+        varisuora = true
+    }
+    
 
-       }
+}
+}
+    
 
    })
 
     function kortitEsille(paikka) {
 
     // arvotaan maa //
-    var randomluku = Math.floor(Math.random() * 4)
+    var randomluku = Math.floor(Math.random() * 1)
     var randomMaa = maat[randomluku]
     
     // arvotaan kortin numero //
