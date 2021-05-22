@@ -1,4 +1,4 @@
-const maat = ["hertta"]
+const maat = ["hertta", "pata", "risti", "ruutu"]
 const numerot = [1,2,3,4,5, 6, 7, 8, 9, 10, 11, 12, 13]
 const nappi = document.getElementById("nappi")
 const lukitusNappi = document.getElementById("lukitusNappi")
@@ -213,7 +213,7 @@ for (b = 0; b < kortit.length; b++) {
     function kortitEsille(paikka) {
 
     // arvotaan maa //
-    var randomluku = Math.floor(Math.random() * 1)
+    var randomluku = Math.floor(Math.random() * 4)
     var randomMaa = maat[randomluku]
     
     // arvotaan kortin numero //
