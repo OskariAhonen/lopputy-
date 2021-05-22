@@ -16,7 +16,7 @@ var lukitus4 = false
 var lukitus5 = false
 
 
-
+var tarkistusTehty = false
 var vaihtoM = false
 var x1
 var x2
@@ -36,6 +36,7 @@ var kortit = []
 var poistoPakka = []
 var tarkistusArvot = []
 nappi.addEventListener("click", () => {
+    tarkistusTehty = false
     vaihtoM = true 
     console.log(poistoPakka.length)
     
@@ -154,12 +155,13 @@ vaihtoM = false
    })
    
    tarkistusNappi.addEventListener("click", () => {
-       if(kortit.length != 0) {
+       if(tarkistusTehty == false) {
+           tarkistusTehty = true
         for(t = 0; t < kortit.length; t++) {
             tarkistusArvot.push(kortit[t].arvo)
         }
         tarkistusArvot.sort(function(a, b){return a-b});
-    }
+    
         //suora
 
         suora = false;
@@ -169,18 +171,16 @@ vaihtoM = false
        suoraMaara = suoraMaara + 1
        if (suoraMaara == 5) {
         suora = true;
-        alert("Suora on" + suora)
        }
     
      break;
    }
 }
-alert("Suora on" + suora)
 suoraMaara = 0
 
 
 
-
+       }
 
    })
 
